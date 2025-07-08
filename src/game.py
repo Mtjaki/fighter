@@ -18,15 +18,15 @@ class Game:
         self.pressed_keys = []
 
     def setup(self):
-        self.player = Player("./assets/character.png", scale=0.5)
+        self.player = Player("./assets/character.jpeg", scale=0.5)
         self.ee = EE()
         self.enemies = []
         for i in range(5):
-            enemy = Enemy("./assets/character.png", scale=0.5)
+            enemy = Enemy("./assets/enemy.jpeg", scale=0.5)
             enemy.rect.x = 200 + i * 50
             enemy.rect.y = 200 + i * 50
             self.enemies.append(enemy)
-        self.boss = Boss("./assets/character.png", scale=0.5)
+        self.boss = Boss("./assets/boss.jpeg", scale=0.5)
 
         self.player.rect.x = 100
         self.player.rect.y = 100
@@ -64,7 +64,7 @@ class Game:
         # Collision with enemies
         for enemy in self.enemies:
             if self.player.rect.colliderect(enemy.rect):
-                self.player.hit()
+                enemy.hit()
 
     def on_key_press(self, key):
         self.pressed_keys.append(key)
