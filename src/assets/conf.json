@@ -1,0 +1,8 @@
+{
+    "name":"2d Fighting Game",
+    "size":{
+        "height":600,
+        "width":800
+    },
+    "count_enemys":5
+}
