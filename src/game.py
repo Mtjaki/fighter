@@ -34,8 +34,11 @@ class Game:
         self.boss.rect.y = 500
 
     def run(self):
+        print("Starting the game loop...")
         running = True
+        print("Game loop is running...")
         while running:
+            print("Processing events...")
             delta = self.clock.tick(FPS) / 1000.0  # seconds
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -45,7 +48,9 @@ class Game:
 
             keys = pygame.key.get_pressed()
             self.update(keys, delta)
+            print("Drawing the screen...")
             self.on_draw()
+            print("Drawing the screen finished...")
         pygame.quit()
         sys.exit()
 
@@ -89,6 +94,7 @@ def main():
     game.setup()
     print("Game setup complete. Starting the game loop...")
     game.run()
+    print("Game loop has ended. Exiting the game...")
 
 if __name__ == "__main__":
     main()
