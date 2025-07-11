@@ -78,10 +78,6 @@ class Game:
             self.player.change_x = -self.player.speed
         elif key == pygame.K_RIGHT or key == pygame.K_d:
             self.player.change_x = self.player.speed
-        elif key == pygame.K_UP  or key == pygame.K_w:
-            self.player.change_y = -self.player.speed
-        elif key == pygame.K_DOWN  or key == pygame.K_s:
-            self.player.change_y = self.player.speed
         elif key == pygame.K_SPACE:
             self.player.attack()
         if self.pressed_keys[:-10] == [pygame.K_w, pygame.K_w, pygame.K_s, pygame.K_s, pygame.K_a, pygame.K_d, pygame.K_a, pygame.K_d, pygame.K_b, pygame.K_a]:
