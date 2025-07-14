@@ -1,29 +1,22 @@
 {
-  "description": "Dies ist der Endraum.",
+  "title": "Endraum",
+  "description": "Der finale Raum! Hier wartet die größte Herausforderung.",
+  "background_color": [60, 60, 10],
   "entities": [
     {
-      "type": "player",
-      "position": [100, 100]
-    },
-    {
-      "type": "enemy",
-      "position": [200, 150]
+      "type": "boss",
+      "position": [300, 200],
+      "scale": 0.8
     }
   ],
-  "title": "Start Room",
-  "background": "start_room_bg.png",
+  "exits": {
+  },
   "items": [
     {
-      "name": "Health Potion",
-      "type": "potion",
-      "effect": "restores health",
-      "uses": 3
-    },
-    {
-      "name": "Sword",
-      "type": "weapon",
-      "damage": 10
+      "name": "Victory Crown",
+      "type": "treasure",
+      "effect": "marks victory",
+      "position": [400, 100]
     }
-  ],
-  "destination":"MainMenu.json"
+  ]
 }

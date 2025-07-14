@@ -1,28 +1,29 @@
 {
-  "description": "Dies ist der Startraum.",
+  "title": "Startraum",
+  "description": "Dies ist der Startraum. Hier beginnt Ihr Abenteuer!",
+  "background_color": [30, 30, 60],
   "entities": [
     {
-      "type": "player",
-      "position": [100, 100]
+      "type": "enemy",
+      "position": [300, 200],
+      "scale": 0.4
     },
     {
-      "type": "enemy",
-      "position": [200, 150]
+      "type": "enemy", 
+      "position": [500, 300],
+      "scale": 0.4
     }
   ],
-  "title": "Start Room",
-  "background": "start_room_bg.png",
+  "exits": {
+    "north": "middle",
+    "east": "basement"
+  },
   "items": [
     {
       "name": "Health Potion",
       "type": "potion",
-      "effect": "restores health"
-    },
-    {
-      "name": "Sword",
-      "type": "weapon",
-      "damage": 10
+      "effect": "restores health",
+      "position": [150, 250]
     }
-  ],
-  "destination":"next_room.json"
+  ]
 }

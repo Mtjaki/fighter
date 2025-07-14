@@ -1,0 +1,33 @@
+{
+  "title": "Mittlerer Raum",
+  "description": "Ein mysteriöser mittlerer Raum mit stärkeren Gegnern.",
+  "background_color": [60, 30, 30],
+  "entities": [
+    {
+      "type": "enemy",
+      "position": [200, 150],
+      "scale": 0.5
+    },
+    {
+      "type": "enemy",
+      "position": [400, 250],
+      "scale": 0.5
+    },
+    {
+      "type": "boss",
+      "position": [350, 200],
+      "scale": 0.6
+    }
+  ],
+  "exits": {
+    "east": "BossKamer"
+  },
+  "items": [
+    {
+      "name": "Power Sword",
+      "type": "weapon",
+      "damage": 25,
+      "position": [100, 100]
+    }
+  ]
+}

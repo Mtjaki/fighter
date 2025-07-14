@@ -1,0 +1,35 @@
+{
+  "title": "Bosskamer",
+  "description": "Kämpfe gegen den mächtigen Boss in dieser speziellen Kammer.",
+  "background_color": [
+    50,
+    50,
+    50
+  ],
+  "entities": [
+    {
+      "type": "boss",
+      "position": [400, 300],
+      "scale": 0.8
+    },
+    {
+      "type": "enemy",
+      "position": [200, 150],
+      "scale": 0.5
+    },
+    {
+      "type": "enemy",
+      "position": [600, 450],
+      "scale": 0.5
+    },
+    {
+      "type":"enemy",
+      "position": [500, 200],
+      "scale": 0.5
+    }
+  ],
+  "exits": {
+    "east": "end"
+  },
+  "items": []
+}

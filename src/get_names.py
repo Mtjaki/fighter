@@ -10,7 +10,7 @@ def get_name():
         if lines:
             return lines[random.randint(0, len(lines) - 1)].strip()
         else:
-            return 'Tommy'
+            return 'TestName123'
 
 if __name__ == "__main__":
     print(get_name())
