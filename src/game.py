@@ -19,8 +19,8 @@ class Game:
         self.pressed_keys = []
 
     def setup(self):
-        self.player = Player("src/assets/player.png", scale=0.5)
-        self.enemies = [Enemy("src/assets/enemy.png", scale=0.5) for _ in range(get_conf("count_enemys"))]
+        self.player = Player("src/assets/player.jpeg", scale=0.5)
+        self.enemies = [Enemy("src/assets/enemy.jpeg", scale=0.5) for _ in range(get_conf("count_enemys"))]
         self.boss = Boss("src/assets/boss.png", scale=0.5)
         self.bg_color = (0, 0, 0)
         self.room = None
