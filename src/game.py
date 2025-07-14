@@ -14,7 +14,6 @@ class Game:
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         pygame.display.set_caption("2D Fighting Game")
         self.clock = pygame.time.Clock()
-        self.bg_color = (178, 190, 181)  # ASH_GREY approximation
         self.pressed_keys = []
 
     def setup(self):
@@ -32,6 +31,14 @@ class Game:
         self.player.rect.y = 100
         self.boss.rect.x = 500
         self.boss.rect.y = 500
+    
+    def load_room(self, room_name):
+        print(f"Loading room: {room_name}")
+        with open(f"src/rooms/{room_name}", "r") as file:
+            data = json.load(file)
+            self.room = Room(data["name"], data["width"], data["height"], data["conf"])
+            self.room.entities = self.load_entities(data.get("entities", []))
+        print(f"Room {self.room.name} loaded with entities: {len(self.room.entities)}")
 
     def run(self):
         print("Starting the game loop...")

@@ -1,0 +1,28 @@
+{
+  "description": "Dies ist der Startraum.",
+  "entities": [
+    {
+      "type": "player",
+      "position": [100, 100]
+    },
+    {
+      "type": "enemy",
+      "position": [200, 150]
+    }
+  ],
+  "title": "Start Room",
+  "background": "start_room_bg.png",
+  "items": [
+    {
+      "name": "Health Potion",
+      "type": "potion",
+      "effect": "restores health"
+    },
+    {
+      "name": "Sword",
+      "type": "weapon",
+      "damage": 10
+    }
+  ],
+  "destination":"next_room.json"
+}
