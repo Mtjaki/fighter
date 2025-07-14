@@ -4,14 +4,7 @@
         "height":600,
         "width":800
     },
+    "FPS":60,
     "count_enemys":5,
-    "first_room":"start.json",
-    "rooms":[
-        "start.json",
-        "end.json"
-    ],
-    "backgrounds":[
-        "start_room_bg.png",
-        "end_room_bg.png"
-    ]
+    "first_room":"start.json"
 }

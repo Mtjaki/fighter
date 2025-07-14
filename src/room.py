@@ -3,19 +3,16 @@ import pygame
 import sys
 import json
 
-from scene import Scene
 from player import Player
 from enemy import Enemy
 from boss import Boss
 
 
-class Room(Scene):
-    def __init__(self, name, width, height, conf):
-        super().__init__()
+class Room:
+    def __init__(self, name, width, height):
         self.name = name
         self.width = width
         self.height = height
-        self.conf = conf
         self.entities = []
         with open(f"src/rooms/{name}.json", "r") as file:
             data = json.load(file)
@@ -23,7 +20,7 @@ class Room(Scene):
             self.entities = self.load_entities(data.get("entities", []))
         print(f"Room {self.name} initialized with width {self.width} and height {self.height}")
         pass
-    
+
     def update(self, dt):
         # Raum-spezifische Logik
         for entity in self.entities:

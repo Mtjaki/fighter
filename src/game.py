@@ -3,42 +3,33 @@ import sys
 from player import Player
 from enemy import Enemy
 from boss import Boss
-from ee import EE
+import ee
+from room import Room
+from get_conf import get_conf
 
-WIDTH, HEIGHT = 800, 600
-FPS = 60
+WIDTH, HEIGHT = get_conf("width"), get_conf("height")
+FPS = get_conf("FPS")
 
 class Game:
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
-        pygame.display.set_caption("2D Fighting Game")
+        pygame.display.set_caption(get_conf("title"))
         self.clock = pygame.time.Clock()
         self.pressed_keys = []
 
     def setup(self):
-        self.player = Player("./assets/character.jpeg", scale=0.5)
-        self.ee = EE()
-        self.enemies = []
-        for i in range(5):
-            enemy = Enemy("./assets/enemy.jpeg", scale=0.5)
-            enemy.rect.x = 200 + i * 50
-            enemy.rect.y = 200 + i * 50
-            self.enemies.append(enemy)
-        self.boss = Boss("./assets/boss.jpeg", scale=0.5)
+        self.player = Player("src/assets/player.png", scale=0.5)
+        self.enemies = [Enemy("src/assets/enemy.png", scale=0.5) for _ in range(get_conf("count_enemys"))]
+        self.boss = Boss("src/assets/boss.png", scale=0.5)
+        self.bg_color = (0, 0, 0)
+        self.room = None
+        self.load_room(get_conf("first_room"))
 
-        self.player.rect.x = 100
-        self.player.rect.y = 100
-        self.boss.rect.x = 500
-        self.boss.rect.y = 500
-    
+
     def load_room(self, room_name):
-        print(f"Loading room: {room_name}")
-        with open(f"src/rooms/{room_name}", "r") as file:
-            data = json.load(file)
-            self.room = Room(data["name"], data["width"], data["height"], data["conf"])
-            self.room.entities = self.load_entities(data.get("entities", []))
-        print(f"Room {self.room.name} loaded with entities: {len(self.room.entities)}")
+        self.room = Room(room_name, WIDTH, HEIGHT, self.conf)
+        print(f"Room {room_name} loaded with entities: {self.room.entities}")
 
     def run(self):
         print("Starting the game loop...")
@@ -55,8 +46,11 @@ class Game:
 
             keys = pygame.key.get_pressed()
             self.update(keys, delta)
+            self.room.update(delta)
             print("Drawing the screen...")
             self.on_draw()
+            self.room.draw(self.screen)
+            pygame.display.flip()
             print("Drawing the screen finished...")
         pygame.quit()
         sys.exit()
@@ -88,7 +82,7 @@ class Game:
         elif key == pygame.K_SPACE:
             self.player.attack()
         if self.pressed_keys[:-10] == [pygame.K_w, pygame.K_w, pygame.K_s, pygame.K_s, pygame.K_a, pygame.K_d, pygame.K_a, pygame.K_d, pygame.K_b, pygame.K_a]:
-            self.ee.open()
+            ee.open_ee()
 
 def main():
     print("Welcome to the 2D Fighting Game!")
