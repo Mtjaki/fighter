@@ -30,6 +30,8 @@ class Player(pygame.sprite.Sprite):
 
         self.rect.x += int(self.change_x)
         self.rect.y += int(self.change_y)
+    def draw(self, screen):
+        pass
     def attack(self):
         # Placeholder for attack logic
         pass

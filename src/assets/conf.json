@@ -6,5 +6,5 @@
     },
     "FPS":60,
     "count_enemys":5,
-    "first_room":"start.json"
+    "first_room":"start"
 }

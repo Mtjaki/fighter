@@ -1,6 +1,5 @@
 import pygame
 import sys
-from ascii_magic import AsciiArt
 from player import Player
 from enemy import Enemy
 from boss import Boss
@@ -9,14 +8,32 @@ from room import Room
 from room_manager import RoomManager
 from get_conf import get_conf
 
-WIDTH, HEIGHT = get_conf("width"), get_conf("height")
+WIDTH, HEIGHT = get_conf("size")["width"], get_conf("size")["height"]
 FPS = get_conf("FPS")
+
+def pixel_to_ascii(pixel):
+    # Berechne die Helligkeit des Pixels
+    brightness = sum(pixel) // 3  # Durchschnitt der RGB-Werte
+    # Wandle die Helligkeit in ein ASCII-Zeichen um
+    return ASCII_CHARS[brightness * len(ASCII_CHARS) // 256]
+
+def frame_to_ascii(frame):
+    ascii_image = ""
+    for y in range(frame.get_height()):
+        for x in range(frame.get_width()):
+            pixel = frame.get_at((x, y))[:3]  # RGB-Werte
+            ascii_char = pixel_to_ascii(pixel)
+            # ANSI-Farbcodes für die Konsolenausgabe
+            r, g, b = pixel
+            ascii_image += f"\033[38;2;{r};{g};{b}m{ascii_char}"
+        ascii_image += "\n"
+    return ascii_image + "\033[0m"  # Zurücksetzen der Farben
 
 class Game:
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
-        pygame.display.set_caption(get_conf("title"))
+        pygame.display.set_caption(get_conf("name"))
         self.clock = pygame.time.Clock()
         self.pressed_keys = []
         self.room_manager = RoomManager()  # Neuer Room Manager
@@ -26,6 +43,7 @@ class Game:
         self.bg_color = (0, 0, 0)
         self.room = None
         self.load_room(get_conf("first_room"))
+        print(self.room_manager.available_rooms)
 
     def load_room(self, room_name):
         """Lädt einen neuen Raum über den RoomManager"""
@@ -74,6 +92,12 @@ class Game:
             
             # Zeichnen
             self.on_draw()
+            # Frame in ASCII umwandeln
+            frame = pygame.surfarray.array3d(pygame.display.get_surface())
+            ascii_art = frame_to_ascii(pygame.display.get_surface())
+
+            # ASCII-Art ausgeben
+            print(ascii_art)
             pygame.display.flip()
             
         pygame.quit()
@@ -88,8 +112,6 @@ class Game:
         
         # Zeichne den Spieler
         self.player.draw(self.screen)
-        img = AsciiArt.
-
     def update(self, keys, delta):
         """Aktualisiert das Spiel"""
         self.player.update(keys, delta)
