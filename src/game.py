@@ -1,5 +1,6 @@
 import pygame
 import sys
+from ascii_magic import AsciiArt
 from player import Player
 from enemy import Enemy
 from boss import Boss
@@ -87,6 +88,7 @@ class Game:
         
         # Zeichne den Spieler
         self.player.draw(self.screen)
+        img = AsciiArt.
 
     def update(self, keys, delta):
         """Aktualisiert das Spiel"""
