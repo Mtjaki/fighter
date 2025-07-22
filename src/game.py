@@ -1,5 +1,6 @@
 import pygame
 import sys
+import os
 from player import Player
 from enemy import Enemy
 from boss import Boss
@@ -10,6 +11,7 @@ from get_conf import get_conf
 
 WIDTH, HEIGHT = get_conf("size")["width"], get_conf("size")["height"]
 FPS = get_conf("FPS")
+ASCII_CHARS = open("src/assets/ascii_chars.txt").read().strip()
 
 def pixel_to_ascii(pixel):
     # Berechne die Helligkeit des Pixels
@@ -97,6 +99,7 @@ class Game:
             ascii_art = frame_to_ascii(pygame.display.get_surface())
 
             # ASCII-Art ausgeben
+            os.system('cls' if os.name == 'nt' else 'clear')
             print(ascii_art)
             pygame.display.flip()
             
